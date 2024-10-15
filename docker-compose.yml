@@ -1,0 +1,90 @@
+version: '3.7'
+services:
+  elasticsearch:
+    build: 
+      context: elastic/
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false # Disable auth in elastic, NOT FOR PROD
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    networks:
+      - app_network
+
+  app-back:
+    build:
+      context: backend/
+    ports:
+      - 5000:5000
+    volumes:
+      - app_back_logs:/app
+    networks:
+      - app_network
+
+  logstash:
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    ports:
+      - 5044:5044
+      - 50000:50000/tcp
+      - 50000:50000/udp
+      - 9600:9600
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:rw
+      - app_back_logs:/var/log/app
+    depends_on:
+      - elasticsearch
+    networks:
+      - app_network
+
+  balancer:
+    build:
+      context: balancer/
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    volumes:
+      - ./balancer/config/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - app-back
+      - kibana
+    networks:
+      - app_network
+  
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      SERVER_BASEPATH: '/kibana'
+      SERVER_REWRITEBASEPATH: true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    depends_on:
+      - elasticsearch
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+  
+volumes:
+  app_back_logs:
+    
