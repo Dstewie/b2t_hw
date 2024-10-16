@@ -91,8 +91,8 @@ Defines and configures all the services in the project.
 # Instructions to Run the Project
 ## Step 1: Clone the Repository:
 ```
-git clone https://github.com/Dstewie/b2t_hw.git
-cd b2t_hw
+git clone https://github.com/Dstewie/log_collection.git
+cd log_collection
 ```
 ## Step 2: Configure Environment Variables
 - If necessary, edit the .env file to adjust the default settings (ELK stask version).
