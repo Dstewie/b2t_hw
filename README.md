@@ -117,7 +117,7 @@ docker-compose up --build
 ### Configuring the Index in Kibana:
 
 - Go to Management > Stack Management > Index Management.
-- Click on `Indices` tab and find index name `app_back`.
+- Click on `Indices` tab and find the index name `app_back`.
 - Find Discover and choose index `app_back`
 - Choose needed fields
-![Alt text](<CleanShot 2024-10-16 at 18.07.37@2x.png>)
+![Final result](<CleanShot 2024-10-16 at 18.07.37@2x.png>)
