@@ -120,4 +120,4 @@ docker-compose up --build
 - Click on `Indices` tab and find the index name `app_back`.
 - Find Discover and choose index `app_back`
 - Choose needed fields
-![Final result](assest/img/kibana_img.png>)
+![Final result](/assest/img/kibana_img.png>)
