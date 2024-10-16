@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 services:
   elasticsearch:
     build: 
@@ -10,7 +10,7 @@ services:
       - "9300:9300"
     environment:
       discovery.type: single-node
-      xpack.security.enabled: false # Disable auth in elastic, NOT FOR PROD
+      xpack.security.enabled: 'false' # Disable auth in elastic, NOT FOR PROD
       ES_JAVA_OPTS: -Xms512m -Xmx512m
     networks:
       - app_network
@@ -75,7 +75,7 @@ services:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
       ES_JAVA_OPTS: -Xms512m -Xmx512m
       SERVER_BASEPATH: /kibana
-      SERVER_REWRITEBASEPATH: true
+      SERVER_REWRITEBASEPATH: 'true'
     deploy:
       resources:
         limits:

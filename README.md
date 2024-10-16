@@ -120,3 +120,4 @@ docker-compose up --build
 - Click on `Indices` tab and find index name `app_back`.
 - Find Discover and choose index `app_back`
 - Choose needed fields
+![Alt text](<CleanShot 2024-10-16 at 18.07.37@2x.png>)
