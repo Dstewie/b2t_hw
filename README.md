@@ -3,7 +3,7 @@ This project is a **Flask web** application deployed using Docker Compose. The a
 # Repository Structure
 **Key Files and Directories:**
 
-- **app/**: Contains the source code of the Flask application.
+- **backend/backend-app/**: Contains the source code of the Flask application.
   - `app.py`: The main Flask application file.
   - `requirements.txt`: Python dependencies for the application.
   - **Dockerfile**: Instructions to build the Docker image for the Flask application.
@@ -61,7 +61,7 @@ Kibana provides visualization and analysis of logs stored in Elasticsearch.
 - Configured with a base path /kibana to work behind a reverse proxy.
 - Connects to Elasticsearch using the service name elasticsearch.
 
-### 5. Nginx
+### 5. Balancer (NGINX)
 **Configuration File**: `balancer/config/nginx.conf`
 
 Nginx serves as a reverse proxy for:
