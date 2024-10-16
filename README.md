@@ -108,7 +108,7 @@ docker-compose up --build
 
 ## Step 5: Generate Logs
 - Refresh the page multiple times.
-- Navigate to non-existent routes, e.g., `http://localhost/unknown`, to generate logs with different response codes.
+- Navigate to non-existent routes, e.g., `http://<ip docker>/unknown`, to generate logs with different response codes.
 
 ## Step 6: Set Up Kibana
 - Navigate to `http://<ip docker>/kibana/`.
