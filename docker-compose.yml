@@ -20,7 +20,7 @@ services:
     build:
       context: backend/
     ports:
-      - 5000:5000
+      - ${APP_BACK_PORT}:${APP_BACK_PORT}
     volumes:
       - app_back_logs:/app
     networks:
@@ -70,11 +70,11 @@ services:
       args:
         ELK_VERSION: ${ELK_VERSION}
     ports:
-      - 5601:5601
+      - ${KIBANA_PORT}:${KIBANA_PORT}
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
       ES_JAVA_OPTS: -Xms512m -Xmx512m
-      SERVER_BASEPATH: '/kibana'
+      SERVER_BASEPATH: ${KIBANA_PATH}
       SERVER_REWRITEBASEPATH: true
     deploy:
       resources:
